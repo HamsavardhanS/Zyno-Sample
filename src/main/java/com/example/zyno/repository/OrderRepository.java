@@ -1,0 +1,12 @@
+package com.example.zyno.repository;
+
+import org.springframework.stereotype.Repository;
+import org.springframework.data.jpa.repository.JpaRepository;
+import com.example.zyno.model.Orders;
+
+@Repository
+public interface OrderRepository extends JpaRepository<Orders, Long> {
+    
+    // Additional query methods can be defined here if needed
+    
+}
