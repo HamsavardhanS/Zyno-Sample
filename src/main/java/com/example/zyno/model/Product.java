@@ -2,6 +2,8 @@ package com.example.zyno.model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
@@ -11,13 +13,14 @@ import lombok.Data;
 
 @Entity
 @Data
-@Table(name = "Products")
-public class Products {
+@Table(name = "Product")
+public class Product {
 
     @Id
     private String productId;
     private String productName;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "product")
     private List<Image> images;
 
@@ -26,9 +29,15 @@ public class Products {
     private double price;
     private int stockQuantity;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "wishlist")
     private List<User> usersWhoWished;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "products")
-    private List<Orders> orders;
+    private List<Order> orders;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "product")
+    private List<Review> reviews;
 }

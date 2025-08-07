@@ -14,7 +14,7 @@ public class CartItem {
     private User user;
 
     @ManyToOne
-    private Products product;
+    private Product product;
 
     private int quantity;
 }

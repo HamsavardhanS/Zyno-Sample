@@ -2,9 +2,9 @@ package com.example.zyno.model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
@@ -27,14 +27,18 @@ public class User {
     private String firstName;
     private String lastname;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "userId")
-    private List<Orders> orders;
-
+    private List<Order> orders;
+    @JsonIgnore
     @ManyToMany
     @JoinTable(
         name = "user_wishlist",
         joinColumns = @JoinColumn(name = "user_id"),
         inverseJoinColumns = @JoinColumn(name = "product_id")
     )
-    private List<Products> wishlist;
+    private List<Product> wishlist;
+    @JsonIgnore
+    @OneToMany(mappedBy = "user")
+    private List<Review> reviews;
 }
